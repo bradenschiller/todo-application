@@ -1,9 +1,12 @@
 import React from 'react';
 
-const AddButton = () => {
+const AddButton = ({showModal}) => {
     return (
         <div className="add-button-container">
-            <button className="add-button">
+            <button 
+            className="add-button"
+            onClick={() => showModal()}
+            >
                 Add Task
             </button>
         </div>

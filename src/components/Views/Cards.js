@@ -3,20 +3,17 @@ import Todo from './cardcomponents/Todo';
 import AddButton from './cardcomponents/AddButton';
 
 
-const Cards = () => {
+const Cards = ({todos, showModal}) => {
   return (
     <div className="card-grid">
         <div className="card">
-        <Todo />
-        <AddButton />
+        {todos.map(item => <Todo item={item}/>)}
+        <AddButton showModal={showModal}/>
         </div>
         <div className="card">
-            <ul>
-                <li>todo</li>
-                <li>todo</li>
-                <li>todo</li>
-                <li>todo</li>
-            </ul>
+            <div>
+                <h1>Completed</h1>
+            </div>
         </div>  
     </div>
     

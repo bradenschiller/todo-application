@@ -41,7 +41,7 @@ nav {
 
 .card {
   background-color: var(--main-background-color);
-  width: 80vw;
+  width: 85%;
 }
 
 /* tod0 component style */
@@ -51,9 +51,14 @@ nav {
   width: 100%;
 }
 
-.todo > input {
+.input-container {
   margin-left: 1rem;
 }
+
+.todo-item  {
+  margin-left: 1rem;
+}
+
 
 .todo > label {
   padding-left: 1rem;
@@ -77,7 +82,7 @@ nav {
   border-style: dashed;
   padding: 5px;
   background-color: rgab(0, 0, 0, 0);
-  width: 50vw;
+  width: 50%;
   height: 35px;
 }
 
@@ -87,5 +92,48 @@ nav {
 }
 
 .add-button:focus {
+  outline: none;
+}
+
+/* modal component styles */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container > input {
+  padding: 10px;
+  font-size: 18px;
+  margin: 10px;
+  width: 70%;
+}
+
+.modal-container > input:focus {
+  outline-color: var(--primary-color);
+}
+
+.modal-container > button {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  width: 65%;
+  font-size: 18px;
+  margin: 5px;
+}
+
+.modal-container > button:active {
+  background-color: var(--primary-color);
+  color: var(--main-background-color);
+}
+
+.modal-container > button:focus {
   outline: none;
 }

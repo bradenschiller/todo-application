@@ -1,16 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
+import 'pretty-checkbox';
 
-export default class Todo extends Component {
-  render() {
-    return (
-      <div className="todo">
-        <input id="todo-item" type="checkbox"/>
-        <label for="todo-item">Take out the trash</label>
-        <p className="todo-time">5:00pm</p>
+const Todo = ({item}) => {
+  return (
+    <div className="todo">
+    <div className="input-container">
+    <div  className="pretty p-icon p-round p-fill p-jelly">
+        <input type="checkbox" />
+        <div className="state p-success">
+          <i className="icon fa fa-check"></i>
+          <label>{item}</label>
+        </div>
       </div>
-    )
-  }
+    </div>
+      <p className="todo-time">5:00pm</p>
+    </div>
+  )
 }
+
+export default Todo
 
 
 
