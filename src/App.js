@@ -47,10 +47,6 @@ class App extends Component {
     this.setState({ visible: true })
   }
 
-  componentDidMount(){
-    console.log(this.props)
-  }
-
   
   render() {
     return (
