@@ -7,6 +7,8 @@ const initalState = {
 export const changeTask = (state=initalState, action={}) => {
     switch(action.type){
         case CHANGE_TASK: 
-            return Object.assign({}, state, task:  action.payload);
+            return Object.assign({}, state, {task: action.payload});
+        default: 
+            return state;
     }
 };

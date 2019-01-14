@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import NavBar from './components/Views/NavBar';
 import './App.css';
 import MainTitle from './components/Views/MainTitle';
 import Cards from './components/Views/Cards';
 import Modal from 'react-awesome-modal';
+
+import { setTask } from './actions';
+
+const mapStateToProps = state => {
+  return {
+    task: state.task 
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeValue: (event) => dispatch(setTask(event.target.value))
+  }
+}
 
 class App extends Component {
   constructor(props){
@@ -11,19 +26,14 @@ class App extends Component {
 
     this.state = {
       todos: [],
-      itemVal: '',
       visible: false
     }
   }
 
-  getVal = (e) => {
-    this.setState({ itemVal: e.target.value })
-  }
 
   addTask = () => {
-    if (this.state.itemVal.length > 0){
-    this.state.todos.push(this.state.itemVal)
-    this.setState({ itemVal: '' })
+    if (this.props.task.length > 0){
+    this.state.todos.push(this.props.task)
     this.setState({ visible: false })
     document.getElementById('addTask').value = '';
     } else {
@@ -35,6 +45,10 @@ class App extends Component {
 
   showModal = () => {
     this.setState({ visible: true })
+  }
+
+  componentDidMount(){
+    console.log(this.props)
   }
 
   
@@ -49,7 +63,7 @@ class App extends Component {
         <Modal className="modal" visible={this.state.visible} width="400" height="300">
           <div className="modal-container">
             <h1>Add a task</h1>
-            <input id="addTask" type="text" placeholder="Add Task" onChange={(e) => this.getVal(e)} />
+            <input id="addTask" type="text" placeholder="Add Task" onChange={(e) => this.props.onChangeValue(e)} />
             <input type="text" placeholder="Add Time"/>
             <button onClick={() => this.addTask()}>Add Task</button>
           </div>
@@ -59,5 +73,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

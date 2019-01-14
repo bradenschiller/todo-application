@@ -7,7 +7,7 @@ const Cards = ({todos, showModal}) => {
   return (
     <div className="card-grid">
         <div className="card">
-        {todos.map(item => <Todo item={item}/>)}
+        {todos.map(item => <Todo key={item} item={item}/>)}
         <AddButton showModal={showModal}/>
         </div>
         <div className="card">
