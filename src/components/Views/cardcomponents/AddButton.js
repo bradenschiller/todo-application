@@ -5,7 +5,7 @@ const AddButton = ({showModal}) => {
         <div className="add-button-container">
             <button 
             className="add-button"
-            onClick={() => showModal()}
+            onClick={() => showModal(true)}
             >
                 Add Task
             </button>

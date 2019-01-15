@@ -6,62 +6,39 @@ import MainTitle from './components/Views/MainTitle';
 import Cards from './components/Views/Cards';
 import Modal from 'react-awesome-modal';
 
-import { setTask } from './actions';
+import { setTask, setTaskValue, setModal } from './actions';
 
 const mapStateToProps = state => {
   return {
-    task: state.task 
+    task: state.changeTaskValue.task,
+    todo: state.changeTaskValue.todo,
+    visible: state.changeTaskValue.visible
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeValue: (event) => dispatch(setTask(event.target.value))
+    onChangeValue: (event) => dispatch(setTask(event.target.value)),
+    addTask: (item, visibility) => dispatch(setTaskValue(item, visibility)),
+    showModal: (value) => dispatch(setModal(value))
   }
 }
 
 class App extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {
-      todos: [],
-      visible: false
-    }
-  }
-
-
-  addTask = () => {
-    if (this.props.task.length > 0){
-    this.state.todos.push(this.props.task)
-    this.setState({ visible: false })
-    document.getElementById('addTask').value = '';
-    } else {
-      this.setState({ visible: false })
-      return null;
-    }
-    
-  }
-
-  showModal = () => {
-    this.setState({ visible: true })
-  }
-
-  
   render() {
     return (
       <div>
         <NavBar />
         <div className="container">
             <MainTitle />
-            <Cards todos={this.state.todos} showModal={this.showModal}/>
+            <Cards todos={this.props.todo} showModal={this.props.showModal}/>
         </div>
-        <Modal className="modal" visible={this.state.visible} width="400" height="300">
+        <Modal className="modal" visible={this.props.visible} width="400" height="300">
           <div className="modal-container">
             <h1>Add a task</h1>
             <input id="addTask" type="text" placeholder="Add Task" onChange={(e) => this.props.onChangeValue(e)} />
             <input type="text" placeholder="Add Time"/>
-            <button onClick={() => this.addTask()}>Add Task</button>
+            <button onClick={() => this.props.addTask(this.props.task, false)}>Add Task</button>
           </div>
         </Modal>
       </div>

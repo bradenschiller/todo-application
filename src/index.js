@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { changeTask } from './reducers';
+import { changeTaskValue } from './reducers';
 
 const logger = createLogger();
-const store = createStore(changeTask, applyMiddleware(logger));
+const rootReducers = combineReducers({changeTaskValue});
+const store = createStore(rootReducers, applyMiddleware(logger));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 
